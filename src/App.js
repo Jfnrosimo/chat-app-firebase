@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div>
       {room ? (
-        <Chat />
+        <Chat room={room} />
       ) : (
         <div>
           <label>Enter Room Name: </label>
