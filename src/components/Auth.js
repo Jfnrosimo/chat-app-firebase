@@ -1,8 +1,10 @@
 import { auth, provider } from "../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 
-import Cookies from "universal-cookie";
+//Import UI
+import { AiFillGoogleCircle } from "react-icons/ai";
 
+import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 const Auth = (props) => {
@@ -18,9 +20,15 @@ const Auth = (props) => {
   };
 
   return (
-    <div>
-      <p>Sign In With Google To Continue</p>
-      <button onClick={signInWithGoogle}>Sign In With Google</button>
+    <div className="text-center flex justify-center flex-col">
+      <p className=" text-sm">Sign In With Google To Continue</p>
+      <button
+        className="text-2xl text-zinc-800 bg-green-300 mt-2 px-2 flex items-center rounded-sm"
+        onClick={signInWithGoogle}
+      >
+        <AiFillGoogleCircle className="mr-2" />
+        Google Sign In
+      </button>
     </div>
   );
 };
