@@ -1,12 +1,32 @@
-import { useState } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
 export const Chat = (props) => {
+  const { room } = props;
   const [newMessage, setNewMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+
   const messagesRef = collection(db, "messages");
 
-  const { room } = props;
+  useEffect(() => {
+    const queryMessages = query(messagesRef, where("room", "==", room));
+    const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
+      let messages = [];
+      snapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id });
+      });
+      setMessages(messages);
+    });
+    return () => unsubscribe;
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +44,11 @@ export const Chat = (props) => {
 
   return (
     <div>
+      <div>
+        {messages.map((message) => (
+          <p>{message.text}</p>
+        ))}
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
