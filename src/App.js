@@ -40,17 +40,18 @@ const App = () => {
       {room ? (
         <Chat room={room} />
       ) : (
-        <div className="flex flex-col h-96 justify-center items-center">
-          <div>
+        <div className="flex flex-col h-96 justify-center items-center border m-3 lg:w-1/2 lg:m-auto lg:mt-10 lg:border-zinc-800">
+          <div className="px-2 flex flex-col text-center">
             <label className="mx-2">Enter Room Name: </label>
             <input
               className="border border-zinc-600"
+              placeholder="Enter a room name..."
               type="text"
               ref={roomInputRef}
             />
           </div>
           <button
-            className="mt-10 w-4/5 text-2xl bg-sky-400"
+            className="mt-10 w-4/5 text-2xl bg-sky-400 lg:w-56"
             onClick={() => setRoom(roomInputRef.current.value)}
           >
             Enter Chat

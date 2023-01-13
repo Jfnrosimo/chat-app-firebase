@@ -51,7 +51,7 @@ export const Chat = (props) => {
   };
 
   return (
-    <div className="flex justify-between items-center flex-col h-full border border-zinc-600 mx-4 my-5">
+    <div className="flex justify-between items-center flex-col h-full border border-zinc-600 mx-4 my-5 lg:w-1/2 lg:mx-auto">
       <div className="mt-3">
         <h1 className=" text-3xl bg-sky-200 rounded-sm p-2">
           Welcome to: <span className="">{room}</span>
@@ -67,7 +67,7 @@ export const Chat = (props) => {
           </div>
         ))}
       </div>
-      <form className="w-full flex justify-center" onSubmit={handleSubmit}>
+      <form className="w-full flex justify-center py-3" onSubmit={handleSubmit}>
         <input
           className="w-3/5 border border-zinc-600 rounded mr-2"
           type="text"
